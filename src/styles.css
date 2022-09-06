@@ -5,25 +5,6 @@ body {
   padding: 0;
 }
 
-#app {
-  min-height: calc(100vh - 80px);
-}
-
-.headertext {
-  position: sticky;
-  color: white;
-}
-
-#scrolldown {
-  position: relative;
-  top: calc(100vh - 200px);
-}
-
-#datePicker {
-  /*background-color: orange;*/
-  color: black;
-}
-
 header {
   z-index: 1;
   /*! top: 100vh; */
@@ -35,6 +16,7 @@ header {
   /*! margin-top: 100vh; */
   text-align: center;
   padding: 5px;
+  color: black;
 }
 
 footer {
@@ -44,6 +26,27 @@ footer {
   background-color: orange;
   /*! height: 0; */
   padding-block: 10px;
+}
+
+#app {
+  min-height: calc(100vh - 80px);
+}
+
+.headertext {
+  position: sticky;
+  /*color: white;*/
+  background-color: orange;
+  z-index: 1;
+}
+
+#scrolldown {
+  position: relative;
+  top: calc(100vh - 200px);
+}
+
+#datePicker {
+  color: black;
+  background-color: white;
 }
 
 .plan {
@@ -89,14 +92,19 @@ footer {
 }
 /*# sourceMappingURL=/styles.dd855970.css.map */
 
-body {
-  background: #fff;
-  color: #000;
-}
-
 @media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: #fff;
+  }
+
   header,
   footer {
+    background-color: #3794c1;
+    color: white;
+  }
+
+  .headertext {
     background-color: #3794c1;
   }
 
@@ -124,10 +132,5 @@ body {
 
   .plan tr:hover {
     background-color: darkblue;
-  }
-
-  body {
-    background-color: #000;
-    color: #fff;
   }
 }
