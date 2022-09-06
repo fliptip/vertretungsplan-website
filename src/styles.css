@@ -14,9 +14,9 @@ body {
   color: white;
 }
 
-.headertext input {
-  background-color: orange;
-  color: #3794c1;
+#datepicker {
+  /*background-color: orange;*/
+  color: black;
 }
 
 header {
