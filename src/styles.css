@@ -13,9 +13,10 @@ body {
   position: sticky;
   color: white;
 }
-.headertext p {
+
+#scrolldown {
   position: relative;
-  top: calc(100vh - 230px);
+  top: calc(100vh - 200px);
 }
 
 #datePicker {
