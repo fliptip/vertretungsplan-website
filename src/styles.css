@@ -13,6 +13,10 @@ body {
   position: sticky;
   color: white;
 }
+.headertext p {
+  position: relative;
+  top: calc(100vh - 230px);
+}
 
 #datePicker {
   /*background-color: orange;*/
