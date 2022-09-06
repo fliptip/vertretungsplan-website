@@ -22,7 +22,6 @@
       content="#3794c1"
       media="(prefers-color-scheme: dark)"
     />
-    <script src="src/index.js"></script>
     <link
       rel="apple-touch-icon"
       href="4A16D890-B6CC-4E10-912F-33B2F0072E6A.png"
@@ -31,17 +30,21 @@
 
   <body style="margin: 0; padding: 0;">
     <header>
-      <span style="position: sticky; top: 0em;">Gemacht von Heinrich</span>
+      <span class="headertext" style="top: 0em;">Gemacht von Heinrich</span>
       <hr />
-      <span style="position: sticky; top: 1em;"
-        >Vertretung Morgen
-        <p></p
-      ></span>
-      <hr />
-      <span style="position: sticky; top: 2em;">
+      <span class="headertext" style="top: 1em;">
         gehostet mit nachhaltigen Energien
       </span>
+      <hr />
+      <input
+        class="headertext"
+        style="top: 4em; width: 94vw;"
+        type="date"
+        id="datePicker"
+        name="datePicker"
+      />
     </header>
+    <script src="src/index.js"></script>
     <!-- <hr> -->
     <div id="app">
       <table class="plan" id="plan0">

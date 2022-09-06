@@ -1,10 +1,22 @@
 body {
   font-family: sans-serif;
   background-color: #fff;
+  margin: 0;
+  padding: 0;
 }
 
 #app {
   min-height: calc(100vh - 80px);
+}
+
+.headertext {
+  position: sticky;
+  color: white;
+}
+
+.headertext input {
+  background-color: orange;
+  color: #3794c1;
 }
 
 header {
