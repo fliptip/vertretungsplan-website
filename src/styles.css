@@ -31,15 +31,15 @@ footer {
   /*! height: 0; */
   padding-block: 10px;
 }
-
-#app {
-  min-height: calc(100vh - 80px);
-}
-
 .headertext {
   position: sticky;
   background-color: orange;
   z-index: 1;
+}
+
+#datePicker {
+  color: black;
+  background-color: white;
 }
 
 #scrolldown {
@@ -47,9 +47,8 @@ footer {
   top: calc(100vh - 200px);
 }
 
-#datePicker {
-  color: black;
-  background-color: white;
+#app {
+  min-height: calc(100vh - 80px);
 }
 
 .plan {
