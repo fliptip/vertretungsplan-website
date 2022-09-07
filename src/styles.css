@@ -1,3 +1,7 @@
+:root {
+  --color: orange;
+}
+
 body {
   font-family: sans-serif;
   background-color: #fff;
@@ -8,7 +12,7 @@ body {
 header {
   z-index: 1;
   /*! top: 100vh; */
-  background-color: orange;
+  background-color: var(--color);
   height: 100vh;
   /*! margin-top: -60px; */
   /*! padding-bottom: 60px; */
@@ -23,7 +27,7 @@ footer {
   position: sticky;
   bottom: 0;
   z-index: -1;
-  background-color: orange;
+  background-color: var(--color);
   /*! height: 0; */
   padding-block: 10px;
 }
@@ -34,7 +38,6 @@ footer {
 
 .headertext {
   position: sticky;
-  /*color: white;*/
   background-color: orange;
   z-index: 1;
 }
@@ -90,26 +93,22 @@ footer {
 .cancelStyle {
   text-decoration: line-through;
 }
-/*# sourceMappingURL=/styles.dd855970.css.map */
 
 @media (prefers-color-scheme: dark) {
+  :root {
+    --color: #3794c1;
+  }
+
   body {
     background-color: #000;
     color: #fff;
   }
 
   header,
+  .headertext,
   footer {
-    background-color: #3794c1;
+    background-color: var(--color);
     color: white;
-  }
-
-  .headertext {
-    background-color: #3794c1;
-  }
-
-  .plan {
-    background-color: #000;
   }
 
   .plan th {
@@ -119,6 +118,7 @@ footer {
 
   .plan tr {
     background-color: #2b3440;
+    color: white;
   }
 
   .plan tr:nth-child(2n) {
