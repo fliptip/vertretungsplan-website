@@ -1,3 +1,5 @@
+var millisecondsdate = Date.now();
+
 var date = new Date(millisecondsdate)
   .toISOString()
   .split("T")[0]
@@ -11,7 +13,6 @@ if (localStorage.getItem("username") === null) {
   getSubstination(date);
 }
 
-var millisecondsdate = Date.now();
 //var datepicker = document.getElementById("datePicker");
 //document.getElementById("datePicker").value = new Date(Date.now()).toISOString().split("T")[0];
 
