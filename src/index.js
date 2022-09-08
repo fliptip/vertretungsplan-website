@@ -1,8 +1,14 @@
+var date = new Date(millisecondsdate)
+  .toISOString()
+  .split("T")[0]
+  .replace(/-/g, "");
+
 if (localStorage.getItem("username") === null) {
   var inputusername = prompt("Benutzername (Vorname) eingeben!");
   localStorage.setItem("username", inputusername);
 } else {
   var username = localStorage.getItem("username");
+  getSubstination(date);
 }
 
 var millisecondsdate = Date.now();
@@ -67,11 +73,6 @@ function getSubstination(date) {
 
   xhr.send(data);
 }
-
-var date = new Date(millisecondsdate)
-  .toISOString()
-  .split("T")[0]
-  .replace(/-/g, "");
 
 getSubstination(date);
 
