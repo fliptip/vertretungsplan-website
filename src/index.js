@@ -1,3 +1,10 @@
+if (localStorage.getItem("username") === null) {
+  var inputusername = prompt("Benutzername (Vorname) eingeben!");
+  localStorage.setItem("username", inputusername);
+} else {
+  var username = localStorage.getItem("username");
+}
+
 var millisecondsdate = Date.now();
 //var datepicker = document.getElementById("datePicker");
 //document.getElementById("datePicker").value = new Date(Date.now()).toISOString().split("T")[0];
@@ -7,7 +14,7 @@ document.getElementById("datePicker").value = new Date()
   .slice(0, 10);
 
 //var url = "https://reqbin.com/echo/post/json";
-///var url = "https://test.fliptip.workers.dev/";
+//var url = "https://webuntis.fliptip.workers.dev/";
 var url = "https://vertretungsplan.fliptip.workers.dev/";
 
 // Sending and receiving data in JSON format using POST method
@@ -17,7 +24,8 @@ function getSubstination(date) {
   var xhr = new XMLHttpRequest();
   //var url = "url";
   xhr.open("POST", url, true);
-  //xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("username", username);
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var json = JSON.parse(xhr.responseText);
