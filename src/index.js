@@ -79,10 +79,12 @@ const remove = (sel) =>
   document.querySelectorAll(sel).forEach((el) => el.remove());
 
 document.getElementById("datePicker").onchange = function () {
-  var value = document.getElementById("datePicker").value;
-  var date = new Date(value).toISOString().split("T")[0].replace(/-/g, "");
+  if (username != null) {
+    var value = document.getElementById("datePicker").value;
+    var date = new Date(value).toISOString().split("T")[0].replace(/-/g, "");
 
-  remove(".vertretung");
+    remove(".vertretung");
 
-  getSubstination(date);
+    getSubstination(date);
+  }
 };
