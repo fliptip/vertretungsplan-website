@@ -8,9 +8,10 @@ var date = new Date(millisecondsdate)
 if (localStorage.getItem("username") === null) {
   var inputusername = prompt("Benutzername (Vorname) eingeben!");
   localStorage.setItem("username", inputusername);
+  var username = inputusername;
+  getSubstination(date);
 } else {
   var username = localStorage.getItem("username");
-  getSubstination(date);
 }
 
 //var datepicker = document.getElementById("datePicker");
