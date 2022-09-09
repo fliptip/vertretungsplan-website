@@ -6,7 +6,7 @@ var date = new Date(millisecondsdate)
   .replace(/-/g, "");
 
 if (localStorage.getItem("username") === null) {
-  var inputusername = prompt("Benutzername (Vorname) eingeben!").replace(
+  var inputusername = prompt("Zugangscode (ehemalig Benuzername) eingeben!").replace(
     " ",
     ""
   );
