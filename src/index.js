@@ -6,7 +6,10 @@ var date = new Date(millisecondsdate)
   .replace(/-/g, "");
 
 if (localStorage.getItem("username") === null) {
-  var inputusername = prompt("Benutzername (Vorname) eingeben!");
+  var inputusername = prompt("Benutzername (Vorname) eingeben!").replace(
+    " ",
+    ""
+  );
   localStorage.setItem("username", inputusername);
   var username = inputusername;
   getSubstination(date);
@@ -21,8 +24,6 @@ document.getElementById("datePicker").value = new Date()
   .toISOString()
   .slice(0, 10);
 
-//var url = "https://reqbin.com/echo/post/json";
-//var url = "https://webuntis.fliptip.workers.dev/";
 var url = "https://vertretungsplan.fliptip.workers.dev/";
 
 // Sending and receiving data in JSON format using POST method
