@@ -1,40 +1,80 @@
+//console.clear();
+
 var millisecondsdate = Date.now();
+var datePicker = document.getElementById("datePicker");
+var value = document.getElementById("datePicker").value;
 
-var date = new Date(millisecondsdate)
-  .toISOString()
-  .split("T")[0]
-  .replace(/-/g, "");
+var userkey;
+function getUserkey() {
+  if (localStorage.getItem("userkey") === null) {
+    var inputuserkey = prompt("Benutzername / Zugangscode eingeben!");
+    inputuserkey.replace(" ", "");
 
-if (localStorage.getItem("username") === null) {
-  var inputusername = prompt("Zugangscode (ehemalig Benuzername) eingeben!").replace(
-    " ",
-    ""
-  );
-  localStorage.setItem("username", inputusername);
-  var username = inputusername;
-  getSubstination(date);
-} else {
-  var username = localStorage.getItem("username");
+    localStorage.setItem("userkey", inputuserkey);
+    userkey = inputuserkey;
+    return userkey;
+  } else {
+    userkey = localStorage.getItem("userkey");
+    return userkey;
+  }
+}
+getUserkey();
+
+var url;
+function substURL() {
+  if (url === undefined) {
+    if (document.cookie.split(";")[0].search("url") == -1) {
+      //getUserkey();
+      getSubstinationURL();
+      console.log("no url cookie");
+    } else {
+      var cookie = `{"${document.cookie.split(";")[0].replace("=", '": "')}"}`;
+      console.log("read cookie");
+      var json = JSON.parse(cookie);
+      //return cookie["url"];
+      url = json["url"];
+      console.log(url);
+      substURL();
+    }
+  } else {
+    console.log(`variable "url" already declare: ${url}`);
+    datePicker.value = new Date(millisecondsdate).toISOString().slice(0, 10);
+    //datePicker.onchange;
+    triggerSubstitution();
+  }
 }
 
-//var datepicker = document.getElementById("datePicker");
-//document.getElementById("datePicker").value = new Date(Date.now()).toISOString().split("T")[0];
+var geturl = "https://vertretungsplan.fliptip.workers.dev/";
+var url;
+async function getSubstinationURL() {
+  const response = await fetch(geturl, {
+    headers: {
+      userkey: userkey,
+      "content-type": "application/json"
+    },
+    method: "GET"
+  });
+  if (response.ok) {
+    url = await response.text();
+    console.log("chang: " + url);
+    let expires = new Date(Date.now() + 300000).toUTCString();
+    document.cookie = `url=${url}; expires=${expires}`;
+    substURL();
+    //return url;
+  }
+}
 
-document.getElementById("datePicker").value = new Date()
-  .toISOString()
-  .slice(0, 10);
+//var url = getSubstinationURL().then();
 
-var url = "https://vertretungsplan.fliptip.workers.dev/";
+//substURL();
 
-// Sending and receiving data in JSON format using POST method
-//
-var plan = document.getElementById("plan0");
+//console.log("url: " + url);
 function getSubstination(date) {
   var xhr = new XMLHttpRequest();
   //var url = "url";
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("username", username);
+  xhr.setRequestHeader("userkey", userkey);
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var json = JSON.parse(xhr.responseText);
@@ -77,18 +117,23 @@ function getSubstination(date) {
   xhr.send(data);
 }
 
-getSubstination(date);
-
-const remove = (sel) =>
-  document.querySelectorAll(sel).forEach((el) => el.remove());
-
-document.getElementById("datePicker").onchange = function () {
-  if (username != null) {
+function triggerSubstitution() {
+  if (userkey != null) {
     var value = document.getElementById("datePicker").value;
     var date = new Date(value).toISOString().split("T")[0].replace(/-/g, "");
 
     remove(".vertretung");
-
     getSubstination(date);
+  } else {
+    getUserkey();
   }
+}
+
+datePicker.onchange = function () {
+  triggerSubstitution();
 };
+
+const remove = (sel) =>
+  document.querySelectorAll(sel).forEach((el) => el.remove());
+
+substURL();
