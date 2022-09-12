@@ -23,12 +23,13 @@ getUserkey();
 var url;
 function substURL() {
   if (url === undefined) {
-    if (document.cookie.split(';')[0].search('url') == -1) {
+    if (document.cookie.search('url') == -1) {
       //getUserkey();
       getSubstinationURL();
       console.log('no url cookie');
     } else {
-      var cookie = `{"${document.cookie.split(';')[0].replace('=', '": "')}"}`;
+      var cookietext = document.cookie.toString().substring(document.cookie.toString().search('url')).split(';')[0];
+      var cookie = `{"${cookietext.replace('=', '": "')}"}`;
       console.log('read cookie');
       var json = JSON.parse(cookie);
       //return cookie["url"];
