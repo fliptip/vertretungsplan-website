@@ -44,7 +44,7 @@ function substURL() {
   }
 }
 
-var geturl = 'https://webuntis.fliptip.workers.dev/';
+var geturl = 'https://vertretungsplan.fliptip.workers.dev/';
 var url;
 async function getSubstinationURL() {
   const response = await fetch(geturl, {
