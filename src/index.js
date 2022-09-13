@@ -4,6 +4,12 @@ var millisecondsdate = Date.now();
 var datePicker = document.getElementById('datePicker');
 var value = document.getElementById('datePicker').value;
 
+var subst = {
+  url: undefined,
+  expires: undefined,
+  // key: undefined,
+};
+
 var userkey;
 function getUserkey() {
   if (localStorage.getItem('userkey') === null) {
@@ -20,25 +26,14 @@ function getUserkey() {
 }
 getUserkey();
 
-var url;
 function substURL() {
-  if (url === undefined) {
-    if (document.cookie.search('url') == -1) {
-      //getUserkey();
-      getSubstinationURL();
-      console.log('no url cookie');
-    } else {
-      var cookietext = document.cookie.toString().substring(document.cookie.toString().search('url')).split(';')[0];
-      var cookie = `{"${cookietext.replace('=', '": "')}"}`;
-      console.log('read cookie');
-      var json = JSON.parse(cookie);
-      //return cookie["url"];
-      url = json['url'];
-      console.log(url);
-      substURL();
-    }
+  console.log(subst.url + subst.expires);
+  if (subst.url === undefined || Date.now() > subst.expires) {
+    //getUserkey();
+    console.log('undefined ' + subst.url);
+    getSubstinationURL();
   } else {
-    console.log(`variable "url" already declare: ${url}`);
+    console.log(`subst.url: ${subst.url} \n ${subst.expires}`);
     datePicker.value = new Date(millisecondsdate).toISOString().slice(0, 10);
     //datePicker.onchange;
     triggerSubstitution();
@@ -46,7 +41,6 @@ function substURL() {
 }
 
 var geturl = 'https://vertretungsplan.fliptip.workers.dev/';
-var url;
 async function getSubstinationURL() {
   const response = await fetch(geturl, {
     headers: {
@@ -56,10 +50,10 @@ async function getSubstinationURL() {
     method: 'GET',
   });
   if (response.ok) {
-    url = await response.text();
-    console.log('chang: ' + url);
-    let expires = new Date(Date.now() + 300000).toUTCString();
-    document.cookie = `url=${url}; expires=${expires}`;
+    subst.url = await response.text();
+    console.log('subst.url set:  ' + subst.url);
+    subst.expires = Date.now() + 300000;
+    //document.cookie = `url=${url}; expires=${expires}`;
     substURL();
     //return url;
   }
@@ -73,7 +67,7 @@ async function getSubstinationURL() {
 function getSubstination(date) {
   var xhr = new XMLHttpRequest();
   //var url = "url";
-  xhr.open('POST', url, true);
+  xhr.open('POST', subst.url, true);
   //xhr.setRequestHeader('Content-Type', 'application/json');
   //xhr.setRequestHeader('userkey', userkey);
   xhr.onreadystatechange = function () {
@@ -91,7 +85,7 @@ function getSubstination(date) {
         var rowsdata = rows[x]['data'];
         // returns mutated array
         rowsdata.splice(5, 1);
-        console.log(rowsdata); // returns array of removed items
+        //console.log(rowsdata); // returns array of removed items
         for (let data in rowsdata) {
           var td = document.createElement('td');
           //console.log(row["data"][data]);
@@ -119,14 +113,14 @@ function getSubstination(date) {
 }
 
 function triggerSubstitution() {
-  if (userkey != null) {
+  if (Date.now() < subst.expires) {
     var value = document.getElementById('datePicker').value;
     var date = new Date(value).toISOString().split('T')[0].replace(/-/g, '');
 
     remove('.vertretung');
     getSubstination(date);
   } else {
-    getUserkey();
+    substURL();
   }
 }
 
