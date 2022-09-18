@@ -22,7 +22,8 @@
       content="#3794c1"
       media="(prefers-color-scheme: dark)"
     />
-    <link rel="apple-touch-icon" href="src/icon.png" />
+    <link rel="icon" href="/src/icon.png">
+    <link rel="apple-touch-icon" href="/src/icon.png" />
     <meta property="og:title" content="Caro Vertretungsplan" />
     <meta
       property="og:description"
@@ -35,6 +36,10 @@
     <meta
       property="og:site_name"
       content="Caro Vertretungsplan für jeden Tag."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline'; connect-src https://vertretungsplan.fliptip.workers.dev https://api.websitecarbon.com; script-src 'self' 'unsafe-inline' https://unpkg.com/website-carbon-badges@1.1.3/b.min.js;" 
     />
   </head>
 
