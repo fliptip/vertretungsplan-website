@@ -67,6 +67,7 @@ footer {
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
+  min-width: calc(100vmin + 20vw);
 }
 
 .plan th {
@@ -79,9 +80,10 @@ footer {
 
 .plan td,
 .plan th {
-  padding-inline: 8px;
+  padding-inline: 4px;
   border-bottom: 1px solid var(--bw);
   padding-block: 2px;
+  border-inline: 1px solid var(--bw);
 }
 
 .plan tr {
