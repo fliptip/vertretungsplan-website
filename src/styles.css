@@ -21,7 +21,7 @@ header {
   /*! height: 0; */
   /*! margin-top: 100vh; */
   text-align: center;
-  padding: 5px;
+  padding-top: 5px;
   color: black;
 }
 
@@ -50,6 +50,7 @@ footer {
 }
 
 #app {
+  --appborder: 0.5em;
   min-height: calc(100vh - 80px);
   overflow-x: scroll;
   background-color: var(--color);
@@ -59,9 +60,10 @@ footer {
   border-radius: 12px;
   overflow-x: scroll;
   padding-block: 10px;
-  background-color: #0e11a8;
+  background-color: var(--tablecolor);
   /*! border: 1em solid var(--color); */
-  margin-inline: 0.5em;
+  margin-inline: var(--appborder);
+  margin-top: var(--appborder);
 }
 
 .plan {
