@@ -1,5 +1,7 @@
 :root {
   --color: orange;
+  --tablecolor: #04aa6d;
+  --bw: black;
 }
 
 body {
@@ -50,6 +52,16 @@ footer {
 #app {
   min-height: calc(100vh - 80px);
   overflow-x: scroll;
+  background-color: var(--color);
+}
+
+#table {
+  border-radius: 12px;
+  overflow-x: scroll;
+  padding-block: 10px;
+  background-color: #0e11a8;
+  /*! border: 1em solid var(--color); */
+  margin-inline: 0.5em;
 }
 
 .plan {
@@ -57,20 +69,23 @@ footer {
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
+  min-width: calc(100vmin + 20vw);
 }
 
 .plan th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04aa6d;
+  background-color: var(--tablecolor);
   color: #fff;
 }
 
 .plan td,
 .plan th {
-  border: 1px solid #ddd;
-  padding: 2px;
+  padding-inline: 4px;
+  border-bottom: 1px solid var(--bw);
+  padding-block: 2px;
+  border-right: 1px solid var(--bw);
 }
 
 .plan tr {
@@ -86,10 +101,6 @@ footer {
   color: black;
 }
 
-.plan tr:hover {
-  background-color: #ddd;
-}
-
 .cancelStyle {
   text-decoration: line-through;
 }
@@ -97,6 +108,8 @@ footer {
 @media (prefers-color-scheme: dark) {
   :root {
     --color: #3794c1;
+    --tablecolor: #0e11a8;
+    --bw: white;
   }
 
   body {
@@ -112,7 +125,7 @@ footer {
   }
 
   .plan th {
-    background-color: #1a39e1;
+    background-color: var(--tablecolor);
     color: #fff;
   }
 
@@ -130,7 +143,4 @@ footer {
     color: white;
   }
 
-  .plan tr:hover {
-    background-color: darkblue;
-  }
 }
