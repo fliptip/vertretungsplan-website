@@ -59,7 +59,7 @@ footer {
   border-radius: 12px;
   overflow-x: scroll;
   padding-block: 10px;
-  background-color: #0e11a8;
+  background-color: var(--tablecolor);
   /*! border: 1em solid var(--color); */
   margin-inline: 0.5em;
 }
