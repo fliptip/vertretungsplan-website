@@ -2,6 +2,8 @@
   --color: orange;
   --tablecolor: #04aa6d;
   --bw: black;
+  --footerpadding: 10px;
+  --footerheight: 80px;
 }
 
 body {
@@ -30,8 +32,8 @@ footer {
   bottom: 0;
   z-index: -1;
   background-color: var(--color);
-  /*! height: 0; */
-  padding-block: 10px;
+  height: calc(var(--footerheight) - 2*var(--footerpadding));
+  padding-block: var(--footerpadding);
 }
 .headertext {
   position: sticky;
@@ -51,7 +53,7 @@ footer {
 
 #app {
   --appborder: 0.5em;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - var(--footerheight));
   overflow-x: scroll;
   background-color: var(--color);
 }
