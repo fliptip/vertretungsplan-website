@@ -8,20 +8,15 @@
 
 body {
   font-family: sans-serif;
-  background-color: #fff;
   margin: 0;
   padding: 0;
+  background-color: var(--color);
+  color: var(--bw);
 }
 
 header {
-  z-index: 1;
-  /*! top: 100vh; */
   background-color: var(--color);
   height: 100vh;
-  /*! margin-top: -60px; */
-  /*! padding-bottom: 60px; */
-  /*! height: 0; */
-  /*! margin-top: 100vh; */
   text-align: center;
   padding-top: 5px;
   color: black;
@@ -35,6 +30,7 @@ footer {
   height: calc(var(--footerheight) - 2*var(--footerpadding));
   padding-block: var(--footerpadding);
 }
+
 .headertext {
   position: sticky;
   background-color: orange;
@@ -63,7 +59,6 @@ footer {
   overflow-x: scroll;
   padding-block: 10px;
   background-color: var(--tablecolor);
-  /*! border: 1em solid var(--color); */
   margin-inline: var(--appborder);
   margin-top: var(--appborder);
 }
@@ -72,7 +67,6 @@ footer {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  background-color: #fff;
   min-width: calc(100vmin + 20vw);
 }
 
@@ -102,7 +96,6 @@ footer {
 
 .plan tr.entfall {
   background-color: #ffe4b5;
-  color: black;
 }
 
 .cancelStyle {
@@ -116,11 +109,6 @@ footer {
     --bw: white;
   }
 
-  body {
-    background-color: #000;
-    color: #fff;
-  }
-
   header,
   .headertext,
   footer {
@@ -130,12 +118,10 @@ footer {
 
   .plan th {
     background-color: var(--tablecolor);
-    color: #fff;
   }
 
   .plan tr {
     background-color: #2b3440;
-    color: white;
   }
 
   .plan tr:nth-child(2n) {
