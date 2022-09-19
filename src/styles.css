@@ -1,5 +1,7 @@
 :root {
   --color: orange;
+  --tablecolor: #04aa6d;
+  --bw: black;
 }
 
 body {
@@ -50,6 +52,14 @@ footer {
 #app {
   min-height: calc(100vh - 80px);
   overflow-x: scroll;
+  background-color: var(--color);
+}
+
+#table {
+  border-radius: 40px;
+  overflow-x: scroll;
+  padding-block: 20px;
+  background-color: var(--tablecolor);
 }
 
 .plan {
@@ -63,14 +73,15 @@ footer {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04aa6d;
+  background-color: var(--tablecolor);
   color: #fff;
 }
 
 .plan td,
 .plan th {
-  border: 1px solid #ddd;
-  padding: 2px;
+  padding-inline: 8px;
+  border-bottom: 1px solid var(--bw);
+  padding-block: 2px;
 }
 
 .plan tr {
@@ -97,6 +108,8 @@ footer {
 @media (prefers-color-scheme: dark) {
   :root {
     --color: #3794c1;
+    --tablecolor: #1a39e1;
+    --bw: white;
   }
 
   body {
@@ -112,7 +125,7 @@ footer {
   }
 
   .plan th {
-    background-color: #1a39e1;
+    background-color: var(--tablecolor);
     color: #fff;
   }
 
