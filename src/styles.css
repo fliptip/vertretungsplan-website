@@ -40,7 +40,7 @@ footer {
 #datePicker {
   color: black;
   top: 3rem;
-  width: calc(100% - 1rem - 2*2px);
+  width: calc(100vw - 1rem - 2*2px);
   padding: 2px;
   border: 0;
   border-radius: 12px;
