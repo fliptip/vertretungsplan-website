@@ -4,7 +4,7 @@
   --bw: black;
   --footerpadding: 10px;
   --footerheight: 80px;
-  --tableinfowidth: 22ch;
+  --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
 }
 
 body {
