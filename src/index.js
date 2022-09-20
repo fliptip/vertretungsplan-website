@@ -11,7 +11,9 @@ var subst = {
 };
 
 var userkey;
-function getUserkey() {
+function initialize() {
+  console.log(`subst.url: ${subst.url} \n ${subst.expires}`);
+  datePicker.value = new Date(millisecondsdate).toISOString().slice(0, 10);
   if (localStorage.getItem('userkey') === null) {
     var inputuserkey = prompt('Benutzername / Zugangscode eingeben!');
     inputuserkey.replace(' ', '');
@@ -24,17 +26,15 @@ function getUserkey() {
     return userkey;
   }
 }
-getUserkey();
+initialize();
 
 function substURL() {
   console.log(subst.url + subst.expires);
   if (subst.url === undefined || Date.now() > subst.expires) {
-    //getUserkey();
+    //initialize();
     console.log('undefined ' + subst.url);
     getSubstinationURL();
   } else {
-    console.log(`subst.url: ${subst.url} \n ${subst.expires}`);
-    datePicker.value = new Date(millisecondsdate).toISOString().slice(0, 10);
     //datePicker.onchange;
     triggerSubstitution();
   }

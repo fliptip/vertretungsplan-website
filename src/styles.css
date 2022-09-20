@@ -4,6 +4,7 @@
   --bw: black;
   --footerpadding: 10px;
   --footerheight: 80px;
+  --tableinfowidth: 22ch;
 }
 
 body {
@@ -32,7 +33,7 @@ footer {
   bottom: 0;
   z-index: -1;
   background-color: var(--color);
-  height: calc(var(--footerheight) - 2*var(--footerpadding));
+  height: calc(var(--footerheight) - 2 * var(--footerpadding));
   padding-block: var(--footerpadding);
 }
 .headertext {
@@ -68,12 +69,18 @@ footer {
   margin-top: var(--appborder);
 }
 
+#infotext {
+  min-width: calc(
+    var(--tableinfowidth) - 4px - 6 * 1px
+  ); /* --tableinfowidth padding-inline, 6 Spalten mit border-right 1px */
+}
+
 .plan {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
-  min-width: calc(100vmin + 20vw);
+  min-width: calc(100vmin - 2 * var(--appborder) + var(--tableinfowidth));
 }
 
 .plan th {
@@ -146,5 +153,4 @@ footer {
     background-color: #801212;
     color: white;
   }
-
 }
