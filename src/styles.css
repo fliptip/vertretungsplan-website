@@ -2,9 +2,7 @@
   --color: orange;
   --tablecolor: #04aa6d;
   --bw: black;
-  --footerpadding: 10px;
-  --footerheight: 80px;
-  --tableinfowidth: 22ch;
+  --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
 }
 
 body {
@@ -16,19 +14,16 @@ body {
 
 header {
   z-index: 1;
-  /*! top: 100vh; */
   background-color: var(--color);
   height: 100vh;
-  /*! margin-top: -60px; */
-  /*! padding-bottom: 60px; */
-  /*! height: 0; */
-  /*! margin-top: 100vh; */
   text-align: center;
   padding-top: 5px;
-  color: black;
+  color: var(--bw);
 }
 
 footer {
+  --footerheight: 80px;
+  --footerpadding: 10px;
   position: sticky;
   bottom: 0;
   z-index: -1;
@@ -44,6 +39,12 @@ footer {
 
 #datePicker {
   color: black;
+  top: 3rem;
+  width: calc(100% - 1rem - 2*2px);
+  padding: 2px;
+  border: 0;
+  border-radius: 12px;
+  text-align: center;
   background-color: white;
 }
 
@@ -53,7 +54,7 @@ footer {
 }
 
 #app {
-  --appborder: 0.5em;
+  --appborder: 0.5rem;
   min-height: calc(100vh - var(--footerheight));
   overflow-x: scroll;
   background-color: var(--color);
@@ -132,7 +133,6 @@ footer {
   .headertext,
   footer {
     background-color: var(--color);
-    color: white;
   }
 
   .plan th {
@@ -152,5 +152,34 @@ footer {
   .plan tr.entfall {
     background-color: #801212;
     color: white;
+  }
+}
+
+@media print {
+  header, footer {
+    visibility: hidden;
+    min-height: auto;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    position: static;
+  }
+  body, #app, #table, #plan0, .plan{
+    min-height: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    min-width: auto;
+    width: 100%;
+    border-collapse: separate;
+    background-color: unset;
+  }
+  #infotext {
+    width: auto;
+    min-width: auto;
+  }
+  .plan td, .plan th {
+    padding: 2px;
+    border-block: : 1px solid black;
   }
 }
