@@ -1,8 +1,11 @@
 :root {
+  --appborder: 0.5rem;
   --color: orange;
   --tablecolor: #04aa6d;
   --bw: black;
   --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
+  --footerheight: 80px;
+  --footerpadding: 10px;
 }
 
 body {
@@ -22,8 +25,6 @@ header {
 }
 
 footer {
-  --footerheight: 80px;
-  --footerpadding: 10px;
   position: sticky;
   bottom: 0;
   z-index: -1;
@@ -40,7 +41,7 @@ footer {
 #datePicker {
   color: black;
   top: 3rem;
-  width: calc(100vw - 1rem - 2*2px);
+  width: calc(100vw - 2*var(--appborder) - 2*2px);
   padding: 2px;
   border: 0;
   border-radius: 12px;
@@ -54,7 +55,6 @@ footer {
 }
 
 #app {
-  --appborder: 0.5rem;
   min-height: calc(100vh - var(--footerheight));
   overflow-x: scroll;
   background-color: var(--color);
@@ -180,6 +180,6 @@ footer {
   }
   .plan td, .plan th {
     padding: 2px;
-    border-block: : 1px solid black;
+    border-block: 1px solid black;
   }
 }
