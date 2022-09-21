@@ -37,10 +37,11 @@ footer {
   height: calc(var(--footerheight) - 2*var(--footerpadding));
   padding-block: calc(var(--footerpadding));
 }
+
 .headertext {
   position: sticky;
-  background-color: orange;
   z-index: 1;
+  background-color: var(--color);
 }
 
 #datePicker {
@@ -57,6 +58,7 @@ footer {
 #scrolldown {
   position: sticky;
   top: calc(100vh - env(safe-area-inset-bottom) - var(--footerheight) + var(--footerpadding));
+  margin: 0;
 }
 
 #app {
@@ -127,12 +129,6 @@ footer {
     --color: #3794c1;
     --tablecolor: #0e11a8;
     --bw: white;
-  }
-
-  header,
-  .headertext,
-  footer {
-    background-color: var(--color);
   }
 
   .plan th {
