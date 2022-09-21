@@ -4,8 +4,8 @@
   --tablecolor: #04aa6d;
   --bw: black;
   --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
-  --footerheight: 100px;
-  --footerpadding: 20px;
+  --footerheight: 5rem;
+  --footerpadding: 0.5rem;
   --maxappwidth: min(100vw, 60rem);
 }
 
@@ -34,7 +34,7 @@ footer {
   bottom: 0;
   z-index: -1;
   background-color: var(--color);
-  height: calc(var(--footerheight) - 2+var(--footerpadding));
+  height: calc(var(--footerheight) - 2*var(--footerpadding));
   padding-block: calc(var(--footerpadding));
 }
 .headertext {
