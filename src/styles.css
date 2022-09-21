@@ -4,13 +4,15 @@
   --tablecolor: #04aa6d;
   --bw: black;
   --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
-  --footerheight: 80px;
-  --footerpadding: 10px;
+  --footerheight: 100px;
+  --footerpadding: 20px;
+  --maxappwidth: min(100vw, 60rem);
 }
 
 body {
   font-family: sans-serif;
-  background-color: #fff;
+  background-color: var(--color);
+  color: var(--bw);
   margin: 0;
   padding: 0;
 }
@@ -22,6 +24,9 @@ header {
   text-align: center;
   padding-top: 5px;
   color: var(--bw);
+  width: var(--maxappwidth);
+  margin-inline: auto;
+  padding-bottom: var(--appborder);
 }
 
 footer {
@@ -29,8 +34,8 @@ footer {
   bottom: 0;
   z-index: -1;
   background-color: var(--color);
-  height: calc(var(--footerheight) - 2 * var(--footerpadding));
-  padding-block: var(--footerpadding);
+  height: calc(var(--footerheight) - 2+var(--footerpadding));
+  padding-block: calc(var(--footerpadding));
 }
 .headertext {
   position: sticky;
@@ -41,7 +46,7 @@ footer {
 #datePicker {
   color: black;
   top: 3rem;
-  width: calc(100vw - 2*var(--appborder) - 2*2px);
+  width: calc(100% - 2*var(--appborder) - 2*2px);
   padding: 2px;
   border: 0;
   border-radius: 12px;
@@ -50,14 +55,15 @@ footer {
 }
 
 #scrolldown {
-  position: relative;
-  top: calc(100vh - 200px);
+  position: sticky;
+  top: calc(100vh - env(safe-area-inset-bottom) - var(--footerheight) + var(--footerpadding));
 }
 
 #app {
   min-height: calc(100vh - var(--footerheight));
-  overflow-x: scroll;
-  background-color: var(--color);
+  margin-inline: auto;
+  width: var(--maxappwidth);
+  /*! background-color: var(--color); */
 }
 
 #table {
@@ -65,9 +71,8 @@ footer {
   overflow-x: scroll;
   padding-block: 10px;
   background-color: var(--tablecolor);
-  /*! border: 1em solid var(--color); */
   margin-inline: var(--appborder);
-  margin-top: var(--appborder);
+  /*! margin-top: var(--appborder); */
 }
 
 #infotext {
@@ -122,11 +127,6 @@ footer {
     --color: #3794c1;
     --tablecolor: #0e11a8;
     --bw: white;
-  }
-
-  body {
-    background-color: #000;
-    color: #fff;
   }
 
   header,
