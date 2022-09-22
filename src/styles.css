@@ -1,15 +1,17 @@
 :root {
-  --appborder: 0.5rem;
   --color: orange;
+  --elementcolor: #b37400;
   --tablecolor: #04aa6d;
   --bw: black;
-  --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
-  --footerheight: 5rem;
-  --footerpadding: 0.5rem;
-  --maxappwidth: min(100vw, 60rem);
+  --borderradius: 12px;
 }
 
 body {
+  --appborder: 0.5rem;
+  --maxappwidth: min(100vw, 60rem);
+  --appwidth: calc(var(--maxappwidth) - 2*var(--appborder));
+  --footerheight: 5rem;
+  --footerpadding: 0.5rem;
   font-family: sans-serif;
   background-color: var(--color);
   color: var(--bw);
@@ -17,64 +19,71 @@ body {
   padding: 0;
 }
 
+header, #app, footer {
+  width: var(--appwidth);
+  margin-inline: auto;
+}
+
 header {
   z-index: 1;
   background-color: var(--color);
   height: 100vh;
   text-align: center;
-  padding-top: 5px;
   color: var(--bw);
-  width: var(--maxappwidth);
-  margin-inline: auto;
-  padding-bottom: var(--appborder);
+}
+
+#app {
+  min-height: calc(100vh - var(--footerheight));
+  text-align: center;
+  color: var(--bw);
+}
+
+#content {
+  padding-top: var(--appborder);
+  background-color: var(--color);
 }
 
 footer {
   position: sticky;
   bottom: 0;
   z-index: -1;
-  background-color: var(--color);
+  background-color: var(--elementcolor);
   height: calc(var(--footerheight) - 2*var(--footerpadding));
-  padding-block: calc(var(--footerpadding));
+  border-radius: var(--borderradius) var(--borderradius) 0 0;
+  padding-block: var(--footerpadding);
 }
 
 .headertext {
   position: sticky;
   z-index: 1;
   background-color: var(--color);
+  padding: 0;
 }
 
 #datePicker {
   color: black;
   top: 3rem;
-  width: calc(100% - 2*var(--appborder) - 2*2px);
-  padding: 2px;
+  width: calc(var(--appwidth) - 2*5px);
+  padding-inline: 5px;
   border: 0;
-  border-radius: 12px;
+  margin: 0;
+  border-radius: var(--borderradius);
   text-align: center;
   background-color: white;
 }
 
 #scrolldown {
   position: sticky;
-  top: calc(100vh - env(safe-area-inset-bottom) - var(--footerheight) + var(--footerpadding));
+  top: calc(100vh - calc(var(--footerheight) - var(--footerpadding)));
   margin: 0;
 }
 
-#app {
-  min-height: calc(100vh - var(--footerheight));
-  margin-inline: auto;
-  width: var(--maxappwidth);
-  /*! background-color: var(--color); */
-}
-
 #table {
-  border-radius: 12px;
+  --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
+  border-radius: var(--borderradius);
   overflow-x: scroll;
   padding-block: 10px;
   background-color: var(--tablecolor);
-  margin-inline: var(--appborder);
-  /*! margin-top: var(--appborder); */
 }
 
 #infotext {
@@ -126,9 +135,10 @@ footer {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color: #3794c1;
+    --color: #1d2f37;
     --tablecolor: #0e11a8;
     --bw: white;
+    --elementcolor: #39a8e1;
   }
 
   .plan th {
