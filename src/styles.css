@@ -36,6 +36,7 @@ header {
   min-height: calc(100vh - var(--footerheight));
   text-align: center;
   color: var(--bw);
+  margin-bottom: var(--appborder);
 }
 
 #content {
