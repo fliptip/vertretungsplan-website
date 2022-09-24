@@ -66,10 +66,7 @@ async function getSubstinationURL() {
 //console.log("url: " + url);
 function getSubstination(date) {
   var xhr = new XMLHttpRequest();
-  //var url = "url";
   xhr.open('POST', subst.url, true);
-  //xhr.setRequestHeader('Content-Type', 'application/json');
-  //xhr.setRequestHeader('userkey', userkey);
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var json = JSON.parse(xhr.responseText);
