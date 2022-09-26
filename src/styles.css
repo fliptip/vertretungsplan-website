@@ -13,6 +13,7 @@ body {
   --appwidth: calc(var(--maxappwidth) - 2*var(--appborder) - env(safe-area-inset-right) - env(safe-area-inset-left));
   --displayhight: calc(100vh - var(--displaybottom) - env(safe-area-inset-top));
   --footerheight: 6rem;
+  --badgepadding: 0.3rem;
   --badgeheight: calc(34px + var(--displaybottom));
   
   font-family: sans-serif;
@@ -49,15 +50,15 @@ header {
 
 footer {
   position: sticky;
-  bottom: calc(var(--badgeheight) - var(--footerheight));
+  bottom: calc(var(--badgeheight) - var(--footerheight) + 2*var(--badgepadding));
   background-color: var(--elementcolor);
   height: var(--footerheight);
   border-radius: var(--borderradius) var(--borderradius) 0 0;
-  padding-top: 0.5rem;
 }
 
 #wcb_p {
   height: var(--badgeheight);
+  padding-block: var(--badgepadding);
 }
 
 .headertext {
@@ -96,7 +97,7 @@ footer {
   }
 
   #scrolldown {
-    top: calc(100svh - var(--badgeheight) - 2rem);
+    top: calc(100svh - var(--badgeheight) - 2rem - 2*var(--badgepadding));
   }
 }
 
