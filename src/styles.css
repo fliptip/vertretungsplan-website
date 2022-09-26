@@ -106,7 +106,7 @@ footer {
   border-radius: var(--borderradius);
   overflow-x: scroll;
   padding-block: 10px;
-  background-color: var(--tablecolor);
+  background-color: var(--elementcolor);
 }
 
 #infotext {
@@ -159,20 +159,18 @@ footer {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color: #1d2f37;
+    --color: #000d17;
     --tablecolor: #0e11a8;
     --bw: white;
-    --elementcolor: #39a8e1;
+    --elementcolor: #0161b7;
   }
 
   .plan th {
-    background-color: var(--tablecolor);
-    color: #fff;
+    background-color: var(--elementcolor);
   }
 
   .plan tr {
     background-color: #2b3440;
-    color: white;
   }
 
   .plan tr:nth-child(2n) {
@@ -181,7 +179,10 @@ footer {
 
   .plan tr.entfall {
     background-color: #801212;
-    color: white;
+  }
+  
+  .plan th, .plan tr, .plan tr.entfall, #wcb_2 {
+    color: #fff
   }
 }
 
