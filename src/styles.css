@@ -83,6 +83,7 @@ footer {
 @supports(height: 100dvh) {
   body {
     --displayhight: 100dvh;
+    --maxappwidth: min(100dvw, 60rem);
   }
 
   header {
@@ -90,7 +91,7 @@ footer {
   }
 
   #scrolldown {
-    top: calc(100svh - var(--badgeheight) - 2rem)
+    top: calc(100svh - var(--badgeheight) - 2rem);
   }
 }
 
