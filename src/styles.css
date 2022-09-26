@@ -8,10 +8,10 @@
 
 body {
   --appborder: 0.5rem;
-  --displaybottom: 1rem; /* env(safe-area-inset-bottom) */
+  --displaybottom: min(env(safe-area-inset-bottom), 1rem);
   --maxappwidth: min(100vw, 60rem);
-  --appwidth: calc(var(--maxappwidth) - 2*var(--appborder));
-  --minappheight: calc(100vh - var(--displaybottom));
+  --appwidth: calc(var(--maxappwidth) - 2*var(--appborder) - env(safe-area-inset-right) - env(safe-area-inset-left));
+  --displayhight: calc(100vh - var(--displaybottom) - env(safe-area-inset-top));
   --footerheight: 6rem;
   --badgeheight: calc(34px + var(--displaybottom));
   
@@ -30,7 +30,7 @@ header, #app, footer {
 header {
   z-index: 1;
   background-color: var(--color);
-  height: 100vh;
+  height: var(--displayhight);
   text-align: center;
   color: var(--bw);
 }
@@ -38,21 +38,18 @@ header {
 #app {
   text-align: center;
   color: var(--bw);
-
-  min-height: calc(100vh - var(--footerheight) - var(--displaybottom));
+  min-height: calc(var(--displayhight) - var(--footerheight));
   z-index: 1;
   position: relative;
 }
 
 #content { /* all in app */
-  /*! padding-top: var(--appborder); */
-  /*! background-color: var(--color); */
-  margin-block: var(--appborder);
+  padding-block: var(--appborder);
 }
 
 footer {
   position: sticky;
-  bottom: calc(-1* var(--footerheight) + var(--badgeheight));
+  bottom: calc(var(--badgeheight) - var(--footerheight));
   background-color: var(--elementcolor);
   height: var(--footerheight);
   border-radius: var(--borderradius) var(--borderradius) 0 0;
@@ -84,8 +81,23 @@ footer {
 
 #scrolldown {
   position: sticky;
-  top: calc(100vh - calc(var(--footerheight)));
+  top: calc(100vh - var(--badgeheight) - 2rem);
   margin: 0;
+}
+
+@supports(height: 100dvh) {
+  body {
+    --displayhight: 100dvh;
+    --maxappwidth: min(100dvw, 60rem);
+  }
+
+  header {
+    --displayhight: 100lvh;
+  }
+
+  #scrolldown {
+    top: calc(100svh - var(--badgeheight) - 2rem);
+  }
 }
 
 #table {
@@ -108,6 +120,7 @@ footer {
   width: 100%;
   background-color: #fff;
   min-width: calc(100vmin - 2 * var(--appborder) + var(--tableinfowidth));
+  text-align: left;
 }
 
 .plan th {
