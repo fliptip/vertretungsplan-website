@@ -11,7 +11,7 @@ body {
   --displaybottom: min(env(safe-area-inset-bottom), 1rem);
   --maxappwidth: min(100vw, 60rem);
   --appwidth: calc(var(--maxappwidth) - 2*var(--appborder) - env(safe-area-inset-right) - env(safe-area-inset-left));
-  --minappheight: calc(100vh - env(safe-area-inset-bottom) - env(safe-area-inset-top));
+  --displayhight: calc(100vh - env(safe-area-inset-bottom) - env(safe-area-inset-top));
   --footerheight: 6rem;
   --badgeheight: calc(34px + var(--displaybottom));
   
@@ -27,20 +27,10 @@ header, #app, footer {
   margin-inline: auto;
 }
 
-@supports(height: 100dvh) {
-  body {
-    --minappheight: 100dvh;
-  }
-
-  #scrolldown {
-    top: calc(100svh - var(--badgeheight) - 2rem)
-  }
-}
-
 header {
   z-index: 1;
   background-color: var(--color);
-  height: 100vh;
+  height: var(--displayhight);
   text-align: center;
   color: var(--bw);
 }
@@ -66,14 +56,14 @@ header {
 
 #scrolldown {
   position: sticky;
-  top: calc(var(--minappheight) - var(--badgeheight) - 2rem);
+  top: calc(var(--displayhight) - var(--badgeheight) - 2rem);
   margin: 0;
 }
 
 #app {
   text-align: center;
   color: var(--bw);
-  min-height: calc(var(--minappheight) - var(--footerheight));
+  min-height: calc(var(--displayhight) - var(--footerheight));
   z-index: 1;
   position: relative;
 }
@@ -88,6 +78,20 @@ footer {
   background-color: var(--elementcolor);
   height: var(--footerheight);
   border-radius: var(--borderradius) var(--borderradius) 0 0;
+}
+
+@supports(height: 100dvh) {
+  body {
+    --displayhight: 100dvh;
+  }
+
+  header {
+    --displayhight: 100lvh;
+  }
+
+  #scrolldown {
+    top: calc(100svh - var(--badgeheight) - 2rem)
+  }
 }
 
 #wcb_p {
@@ -114,6 +118,7 @@ footer {
   width: 100%;
   background-color: #fff;
   min-width: calc(100vmin - 2 * var(--appborder) + var(--tableinfowidth));
+  text-align: left;
 }
 
 .plan th {
