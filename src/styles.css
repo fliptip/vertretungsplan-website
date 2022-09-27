@@ -1,6 +1,6 @@
 :root {
   --color: orange;
-  --elementcolor: #b37400;
+  --elementcolor: #c17d00;
   --tablecolor: #04aa6d;
   --bw: black;
   --borderradius: 12px;
@@ -28,6 +28,10 @@ header, #app, footer {
   margin-inline: auto;
 }
 
+p {
+  margin: 0;
+}
+
 header {
   z-index: 1;
   background-color: var(--color);
@@ -44,8 +48,15 @@ header {
   position: relative;
 }
 
-#content { /* all in app */
-  padding-block: var(--appborder);
+#content {
+  padding-top: var(--appborder);
+}
+
+#table, #other { /* all in app */
+  padding-block: var(--borderradius);
+  border-radius: var(--borderradius);
+  background-color: var(--elementcolor);
+  margin-block: var(--appborder);
 }
 
 footer {
@@ -103,10 +114,9 @@ footer {
 
 #table {
   --tableinfowidth: min(50vw, calc(100vh - 100vmin), 22ch);
-  border-radius: var(--borderradius);
   overflow-x: scroll;
-  padding-block: 10px;
-  background-color: var(--tablecolor);
+  padding-top: 3px;
+  margin-top: 0;
 }
 
 #infotext {
@@ -119,7 +129,6 @@ footer {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  background-color: #fff;
   min-width: calc(100vmin - 2 * var(--appborder) + var(--tableinfowidth));
   text-align: left;
 }
@@ -128,7 +137,7 @@ footer {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: var(--tablecolor);
+  background-color: var(--elementcolor);
   color: #fff;
 }
 
@@ -162,7 +171,7 @@ footer {
     --color: #000d17;
     --tablecolor: #0e11a8;
     --bw: white;
-    --elementcolor: #0161b7;
+    --elementcolor: #1674c8;
   }
 
   .plan th, #table {
