@@ -106,7 +106,7 @@ footer {
   border-radius: var(--borderradius);
   overflow-x: scroll;
   padding-block: 10px;
-  background-color: var(--elementcolor);
+  background-color: var(--tablecolor);
 }
 
 #infotext {
@@ -165,7 +165,7 @@ footer {
     --elementcolor: #0161b7;
   }
 
-  .plan th {
+  .plan th, #table {
     background-color: var(--elementcolor);
   }
 
