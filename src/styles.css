@@ -12,9 +12,9 @@ body {
   --maxappwidth: min(100vw, 60rem);
   --appwidth: calc(var(--maxappwidth) - 2*var(--appborder) - env(safe-area-inset-right) - env(safe-area-inset-left));
   --displayhight: calc(100vh - var(--displaybottom) - env(safe-area-inset-top));
-  --footerheight: 6rem;
+  --footerheight: 5rem;
   --badgepadding: 0.3rem;
-  --badgeheight: calc(34px + var(--displaybottom));
+  --badgeheight: 34px;
   
   font-family: sans-serif;
   background-color: var(--color);
@@ -44,32 +44,27 @@ header {
   text-align: center;
   color: var(--bw);
   min-height: calc(var(--displayhight) - var(--footerheight));
-  z-index: 1;
-  position: relative;
 }
 
 #content {
   padding-top: var(--appborder);
 }
 
-#table, #other { /* all in app */
+#content > div { /* all in app */
   padding-block: var(--borderradius);
   border-radius: var(--borderradius);
   background-color: var(--elementcolor);
-  margin-block: var(--appborder);
+  margin-bottom: var(--appborder);
 }
 
 footer {
-  position: sticky;
-  bottom: calc(var(--badgeheight) - var(--footerheight) + 2*var(--badgepadding));
   background-color: var(--elementcolor);
-  height: var(--footerheight);
   border-radius: var(--borderradius) var(--borderradius) 0 0;
+  min-height: var(--footerheight);
 }
 
-#wcb_p {
-  height: var(--badgeheight);
-  padding-block: var(--badgepadding);
+footer > div {
+  padding-top: var(--appborder);
 }
 
 .headertext {
@@ -93,7 +88,7 @@ footer {
 
 #scrolldown {
   position: sticky;
-  top: calc(100vh - var(--badgeheight) - 2rem);
+  top: calc(var(--displayhight)  - 3rem);
   margin: 0;
 }
 
@@ -108,7 +103,7 @@ footer {
   }
 
   #scrolldown {
-    top: calc(100svh - var(--badgeheight) - 2rem - 2*var(--badgepadding));
+    --displayhight: 100svh;
   }
 }
 
@@ -117,6 +112,9 @@ footer {
   overflow-x: scroll;
   padding-top: 3px;
   margin-top: 0;
+  z-index: 1;
+  position: relative;
+  padding-top: 3px;
 }
 
 #infotext {
