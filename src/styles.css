@@ -194,6 +194,11 @@ footer > div {
 }
 
 @media print {
+  
+  :root {
+    --tablecolor: transparent;
+  }
+  
   header, footer {
     visibility: hidden;
     min-height: auto;
@@ -202,7 +207,7 @@ footer > div {
     padding: 0;
     position: static;
   }
-  body, #app, #table, #plan0, .plan{
+  body, #app, #content > div, #table, #plan0, .plan{
     min-height: auto;
     height: auto;
     margin: 0;
@@ -210,7 +215,7 @@ footer > div {
     min-width: auto;
     width: 100%;
     border-collapse: separate;
-    background-color: unset;
+    background-color: transparent;
   }
   #infotext {
     width: auto;
@@ -219,5 +224,8 @@ footer > div {
   .plan td, .plan th {
     padding: 2px;
     border-block: 1px solid black;
+    border-inline: 1px solid var(--bw);
+    background-color: unset;
+    color: black;
   }
 }
