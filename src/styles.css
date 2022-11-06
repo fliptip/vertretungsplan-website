@@ -18,15 +18,11 @@ body {
   font-family: sans-serif;
   background-color: var(--color);
   color: var(--bw);
-  margin: 0;
-  margin-left: env(safe-area-inset-left);
-  margin-right: env(save-area-insetright);
-  margin-bottom: min(env(safe-area-inset-bottom), 1rem);
-  /*padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);*/
+  margin: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
 #app {
-  width: min(100vw - 2* var(--appborder), 60rem);
+  width: min(100vw - 2* var(--appborder) - env(safe-area-inset-right) - env(safe-area-inset-left), 60rem);
   margin-inline: auto;
   position: relative;
   color: var(--bw);
@@ -71,6 +67,7 @@ footer {
   top: 100vh;
   animation: y-slide .7s cubic-bezier(.38,.49,0,.82);
   color: #fff;
+  padding-bottom: clamp(.6em, env(safe-area-inset-bottom), 1em);
   
 }
 
@@ -96,9 +93,6 @@ details[open] summary ~ * {
   animation: sweep .5s ease-in-out;
 }
 
-.options > button {
-
-}
 
 @keyframes sweep {
   0%    {opacity: 0; transform: translateX(-10px)}
