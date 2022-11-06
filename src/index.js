@@ -12,10 +12,10 @@ var subst = {
 
 var userkey;
 function initialize() {
-  console.log(`subst.url: ${subst.url} \n ${subst.expires}`);
+  console.log(`subst.url: ${subst.url} \n  expires: ${subst.expires}`);
   datePicker.value = new Date(millisecondsdate).toISOString().slice(0, 10);
   if (localStorage.getItem('userkey') === null) {
-    var inputuserkey = prompt('Benutzername / Zugangscode eingeben!');
+    var inputuserkey = prompt('Persönlichen Zugangscode eingeben!');
     inputuserkey.replace(' ', '');
 
     localStorage.setItem('userkey', inputuserkey);
@@ -29,7 +29,7 @@ function initialize() {
 initialize();
 
 function substURL() {
-  console.log(subst.url + subst.expires);
+  console.log(subst.url + " " + subst.expires);
   if (subst.url === undefined || Date.now() > subst.expires) {
     //initialize();
     console.log('undefined ' + subst.url);
@@ -72,6 +72,7 @@ function getSubstination(date) {
       var json = JSON.parse(xhr.responseText);
       //document.getElementById("app").innerHTML = xhr.response;
       console.log(json);
+      document.getElementById('lastUpdate').innerHTML = ` Stand: ${json['payload']['lastUpdate']}`
       var rows = json['payload']['rows'];
       for (let x in rows) {
         var c = rows[x]['group'];
