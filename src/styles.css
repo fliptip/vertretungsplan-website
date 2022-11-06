@@ -35,6 +35,7 @@ body {
   border-radius: var(--borderradius);
   background-color: var(--elementcolor);
   margin-block: var(--appborder);
+  color: #fff;
 }
 
 
