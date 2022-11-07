@@ -147,8 +147,7 @@ details[open] summary ~ * {
 .plan {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
-  min-width: calc(100vmin - 2 * var(--appborder) + var(--tableinfowidth));
+  width: clamp(100%, 100vmin - 2 * var(--appborder) + var(--tableinfowidth), 60rem);
   text-align: left;
 }
 
