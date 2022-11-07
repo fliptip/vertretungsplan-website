@@ -10,6 +10,7 @@ function deleteAccessKey() {
     inputuserkey.replace(' ', '');
   
     localStorage.setItem('userkey', inputuserkey);
+    getSubstinationURL()
   }
   
   const deleteAccessKeyButton = document.getElementById("deleteAccessKey")
