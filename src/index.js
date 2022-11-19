@@ -1,7 +1,7 @@
 // This is just to force HTTPS (can't do it statically on glitch)
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/src/installer.js')
+    .register('installer.js')
     .then(() => { console.log('Service Worker Registered'); });
 }
 //console.clear();
@@ -78,11 +78,7 @@ function getSubstination(date) {
       var json = JSON.parse(xhr.responseText);
       //document.getElementById("app").innerHTML = xhr.response;
       console.log(json);
-      document.getElementById('lastUpdate').innerHTML = ` Stand: ${json['payload']['lastUpdate']}`
-      var rows = json['payload']['rows'];
-      for (let x in rows) {
-        var c = rows[x]['group'];
-        let newRow = document.createElement('tr');
+     let newRow = document.createElement('tr');
         var td = document.createElement('td');
         newRow.appendChild(td);
         td.innerHTML = c;
@@ -114,7 +110,7 @@ function getSubstination(date) {
   var data = JSON.stringify({ date: date, userkey: userkey });
 
   xhr.send(data);
-}
+
 
 function triggerSubstitution() {
   if (Date.now() < subst.expires) {
@@ -136,32 +132,3 @@ const remove = (sel) =>
   document.querySelectorAll(sel).forEach((el) => el.remove());
 
 substURL();
-
-
-let deferredPrompt;
-const addBtn = document.querySelector('.add-button');
-addBtn.style.display = 'none';
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI to notify the user they can add to home screen
-  addBtn.style.display = 'block';
-
-  addBtn.addEventListener('click', () => {
-    addBtn.style.display = 'none';
-    // Show the prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the prompt');
-      } else {
-        console.log('User dismissed the prompt');
-      }
-      deferredPrompt = null;
-    });
-  });
-});
