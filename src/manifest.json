@@ -4,7 +4,7 @@
     "description": "Vertretungsplan für jeden Tag",
     "icons": [
       {
-        "sizes": "128x128",
+        "sizes": "652x652",
         "type": "image/png",
         "src": "/src/icon.png"
       }
