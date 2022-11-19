@@ -1,0 +1,14 @@
+{
+    "name": "Vertretungsplan",
+    "short_name": "Vertretungsplan",
+    "description": "Vertretungsplan für jeden Tag",
+    "icons": [
+      {
+        "sizes": "128x128",
+        "type": "image/png",
+        "src": "/src/icon.png"
+      }
+    ],
+    "display": "standalone",
+    "start_url": "/index.html"
+  }
