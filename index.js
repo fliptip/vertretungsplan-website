@@ -1,7 +1,6 @@
-// This is just to force HTTPS (can't do it statically on glitch)
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('sw.js')
+    .register('/sw.js')
     .then(() => { console.log('Service Worker Registered'); });
 }
 //console.clear();
