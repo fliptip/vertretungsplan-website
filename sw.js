@@ -24,20 +24,7 @@ self.addEventListener('install', (e) => {
 }); */
 
 
-self.addEventListener('fetch', function (event) {
-  event.respondWith(
-    caches.open('pwa-assets').then(function (cache) {
-      return fetch(event.request).then(function (response) {
-        cache.put(event.request, response.clone());
-        return response;
-      });
-    }),
-  );
-});
-
-
-
-/* self.addEventListener("fetch", event => {
+self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
         const networkFetch = fetch(event.request).then(response => {
@@ -51,4 +38,4 @@ self.addEventListener('fetch', function (event) {
     }
   )
  )
-}); */
+});
