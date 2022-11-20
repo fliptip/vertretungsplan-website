@@ -3,14 +3,18 @@ self.addEventListener('install', e => {
     caches.open('pwa-assets').then(cache => 
       {
         return cache.addAll([
-          'index.html',
-          'index.css',
-          'index.js'
+          '/index.html',
+          '/styles.css',
+          '/index.js',
+          '/src/app.js',
+          '/sw.js',
+          '/src/acceskeybuttons.js'
+
         ])
       })
   );
 });
-  
+
 self.addEventListener('fetch', e => {
   e.respondWith(
     caches.match(e.request).then(response => {
