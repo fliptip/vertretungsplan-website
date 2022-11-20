@@ -4,4 +4,4 @@
   Referrer-Policy: no-referrer
   X-Robots-Tag: nosnippet
   X-Robots-Tag: noindex
-  Content-Security-Policy: default-src 'self' ; style-src 'self' 'unsafe-inline'; connect-src https://vertretungsplan.fliptip.workers.dev https://cloudflareinsights.com/cdn-cgi/rum https://api.websitecarbon.com; script-src 'self' https://unpkg.com/website-carbon-badges@1.1.3/b.min.js https://static.cloudflareinsights.com/beacon.min.js;
+  Content-Security-Policy: default-src 'self' https://cloudflareinsights.com/cdn-cgi/rum ; style-src 'self' 'unsafe-inline'; connect-src https://vertretungsplan.fliptip.workers.dev https://api.websitecarbon.com; script-src 'self' https://unpkg.com/website-carbon-badges@1.1.3/b.min.js https://static.cloudflareinsights.com/beacon.min.js;
