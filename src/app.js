@@ -64,48 +64,50 @@ async function getSubstinationURL() {
 
 //console.log("url: " + url);
 function getSubstination(date) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', subst.url, true);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var json = JSON.parse(xhr.responseText);
-      //document.getElementById("app").innerHTML = xhr.response;
-      console.log(json);
-     let newRow = document.createElement('tr');
-        var td = document.createElement('td');
-        newRow.appendChild(td);
-        td.innerHTML = c;
-        var rowsdata = rows[x]['data'];
-        // returns mutated array
-        rowsdata.splice(5, 1);
-        //console.log(rowsdata); // returns array of removed items
-        for (let data in rowsdata) {
-          var td = document.createElement('td');
-          //console.log(row["data"][data]);
-          td.innerHTML = rowsdata[data];
-          newRow.setAttribute('class', 'vertretung');
-          newRow.appendChild(td);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', subst.url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+        var json = JSON.parse(xhr.responseText);
+        //document.getElementById("app").innerHTML = xhr.response;
+        console.log(json);
+        document.getElementById('lastUpdate').innerHTML = ` Stand: ${json['payload']['lastUpdate']}`
+        var rows = json['payload']['rows'];
+        for (let x in rows) {
+            var c = rows[x]['group'];
+            let newRow = document.createElement('tr');
+            var td = document.createElement('td');
+            newRow.appendChild(td);
+            td.innerHTML = c;
+            var rowsdata = rows[x]['data'];
+            // returns mutated array
+            rowsdata.splice(5, 1);
+            //console.log(rowsdata); // returns array of removed items
+            for (let data in rowsdata) {
+            var td = document.createElement('td');
+            //console.log(row["data"][data]);
+            td.innerHTML = rowsdata[data];
+            newRow.setAttribute('class', 'vertretung');
+            newRow.appendChild(td);
+            }
+            //newRow.innerHTML = "This is a paragraph.";
+            //console.log(row.data);
+            // Append to another element:
+            var plan = document.getElementById('plan0');
+            plan.appendChild(newRow);
+
+            if (rowsdata[4] == 'Entfall'  || rowsdata[4].includes('Verlegung nach')) {
+            //console.log(row.data[4]);
+            newRow.setAttribute('class', 'entfall vertretung');
+            }
         }
-        //newRow.innerHTML = "This is a paragraph.";
-        //console.log(row.data);
-        // Append to another element:
-        var plan = document.getElementById('plan0');
-        plan.appendChild(newRow);
-
-        if (rowsdata[4] == 'Entfall'  || rowsdata[4].includes('Verlegung nach')) {
-          //console.log(row.data[4]);
-          newRow.setAttribute('class', 'entfall vertretung');
         }
-      }
-    }
-  }; // 7200000 milliseconds = 2 hours -> time in berlin
+    }; // 7200000 milliseconds = 2 hours -> time in berlin
 
-  var value = document.getElementById('datePicker').value;
-  var date = new Date(value).toISOString().split('T')[0].replace(/-/g, '');
-  var data = JSON.stringify({ date: date, userkey: userkey });
+    var data = JSON.stringify({ date: date, userkey: userkey });
 
-  xhr.send(data);
-
+    xhr.send(data);
+}
 
 function triggerSubstitution() {
   if (Date.now() < subst.expires) {
