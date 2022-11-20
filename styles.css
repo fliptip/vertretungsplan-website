@@ -67,7 +67,7 @@ footer {
   background-color: var(--elementcolor);
   border-radius: var(--borderradius) var(--borderradius) 0 0;
   min-height: var(--footerheight);
-  padding: .6em;
+  padding-top: .6em;
   position: sticky;
   top: 100vh;
   animation: y-slide .7s cubic-bezier(.38,.49,0,.82);
@@ -82,12 +82,12 @@ footer {
   justify-content: space-around;
 }
 
-details > summary {
-  list-style: none;
+#footercontent > * {
+  padding-inline: var(--appborder);
 }
 
-details {
-  width: 100%;
+details > summary {
+  list-style: none;
 }
 
 details > button {
