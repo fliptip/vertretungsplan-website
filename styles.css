@@ -53,6 +53,7 @@ input {
   margin: 0;
   border-radius: var(--borderradius);
   width: 100%;
+  min-width: 10em;
 }
 
 #title {
@@ -109,7 +110,7 @@ details[open] summary ~ * {
 }
 
 #table {
-  --tableinfowidth: min(calc(100vh - 100vmin), 22ch);
+  --tableinfowidth: min(calc(100vmax - 100vmin), 22ch);
   overflow-x: scroll;
   padding-top: 3px;
   margin-top: 0;
@@ -139,7 +140,7 @@ details[open] summary ~ * {
 }
 
 #infotext {
-  min-width: calc(
+  width: calc(
     var(--tableinfowidth) - 4px - 6 * 1px
   ); /* --tableinfowidth padding-inline, 6 Spalten mit border-right 1px */
 }
