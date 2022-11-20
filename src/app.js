@@ -6,7 +6,7 @@ var value = document.getElementById('datePicker').value;
 var subst = {
   url: undefined,
   expires: undefined,
-  // key: undefined,
+  key: undefined,
 };
 
 var userkey;
@@ -18,11 +18,11 @@ function initialize() {
     inputuserkey.replace(' ', '');
 
     localStorage.setItem('userkey', inputuserkey);
-    userkey = inputuserkey;
-    return userkey;
+    subst.key = inputuserkey;
+    return inputuserkey;
   } else {
-    userkey = localStorage.getItem('userkey');
-    return userkey;
+    subst.key = localStorage.getItem('userkey');
+    return subst.key;
   }
 }
 initialize();
@@ -43,7 +43,7 @@ var geturl = 'https://vertretungsplan.fliptip.workers.dev/';
 async function getSubstinationURL() {
   const response = await fetch(geturl, {
     headers: {
-      userkey: userkey,
+      userkey: subst.key,
       'content-type': 'application/json',
     },
     method: 'GET',
@@ -51,7 +51,7 @@ async function getSubstinationURL() {
   if (response.ok) {
     subst.url = await response.text();
     console.log('subst.url set:  ' + subst.url);
-    subst.expires = Date.now() + 300000;
+    subst.expires = subst.url.split('&expiry=')[1];
     //document.cookie = `url=${url}; expires=${expires}`;
     substURL();
     //return url;
@@ -104,7 +104,7 @@ function getSubstination(date) {
         }
     }; // 7200000 milliseconds = 2 hours -> time in berlin
 
-    var data = JSON.stringify({ date: date, userkey: userkey });
+    var data = JSON.stringify({ date: date, userkey: subst.key });
 
     xhr.send(data);
 }

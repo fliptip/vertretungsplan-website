@@ -2,14 +2,14 @@ function deleteAccessKey() {
     getSubstinationURL()
     localStorage.removeItem('userkey')
     alert(`Dein persönlichen Zugangscode wurder von diesem Gerät gelöscht, du kannst diese Sitzung noch 5 Minuten zuende führen.`)
-    var userkey = null
+    subst.key = null
     localStorage.setItem('userkey', null);
   }
   
   function changeAccessKey() {
     var inputuserkey = prompt('Persönlichen Zugangscode eingeben!');
     inputuserkey.replace(' ', '');
-    var userkey = inputuserkey
+    subst.key = inputuserkey
     localStorage.setItem('userkey', inputuserkey);
     getSubstinationURL()
   }
