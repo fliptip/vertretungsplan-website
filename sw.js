@@ -1,8 +1,8 @@
-var CACHE = 'pwa-assets';
+const { response } = require("express");
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll([
+    caches.open('pwa-assets').then((cache) => cache.addAll([
       '/',
       '/index.html',
       '/styles.css',
@@ -14,33 +14,41 @@ self.addEventListener('install', (e) => {
   );
 });
 
-self.addEventListener('fetch', function(evt) {
-  console.log('The service worker is serving the asset.');
-  // You can use `respondWith()` to answer immediately, without waiting for the
-  // network response to reach the service worker...
-  evt.respondWith(fromCache(evt.request));
-  // ...and `waitUntil()` to prevent the worker from being killed until the
-  // cache is updated.
-  evt.waitUntil(update(evt.request));
+/* self.addEventListener('fetch', (e) => {
+  e.respondWith(
+    fetch(e.request)
+    .catch(function() {
+      return caches.match(e.request)
+    })
+  );
+}); */
+
+
+self.addEventListener('fetch', function (event) {
+  event.respondWith(
+    caches.open('pwa-assets').then(function (cache) {
+      return fetch(event.request).then(function (response) {
+        cache.put(event.request, response.clone());
+        return response;
+      });
+    }),
+  );
 });
 
-// Open the cache where the assets were stored and search for the requested
-// resource. Notice that in case of no matching, the promise still resolves
-// but it does with `undefined` as value.
-function fromCache(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.match(request).then(function (matching) {
-      return matching || Promise.reject('no-match');
-    });
-  });
-}
 
-// Update consists in opening the cache, performing a network request and
-// storing the new response data.
-function update(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return fetch(request).then(function (response) {
-      return cache.put(request, response);
-    });
-  });
-}
+
+/* self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+        const networkFetch = fetch(event.request).then(response => {
+          // update the cache with a clone of the network response
+          caches.open("pwa-assets").then(cache => {
+              cache.put(event.request, response.clone());
+          });
+        });
+        // prioritize cached response over network
+        return cachedResponse || networkFetch;
+    }
+  )
+ )
+}); */
