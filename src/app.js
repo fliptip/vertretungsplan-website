@@ -100,7 +100,7 @@ function getSubstination(date) {
     }
   }; // 7200000 milliseconds = 2 hours -> time in berlin
 
-  var data = JSON.stringify({ date: date, userkey: userkey });
+  var data = JSON.stringify({ "date": date, "userkey": userkey });
 
   xhr.send(data);
 
