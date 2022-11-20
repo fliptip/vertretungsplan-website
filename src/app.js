@@ -100,6 +100,7 @@ function getSubstination(date) {
     }
   }; // 7200000 milliseconds = 2 hours -> time in berlin
 
+  var value = document.getElementById('datePicker').value;
   var date = new Date(value).toISOString().split('T')[0].replace(/-/g, '');
   var data = JSON.stringify({ date: date, userkey: userkey });
 
