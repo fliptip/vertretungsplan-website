@@ -21,8 +21,38 @@ self.addEventListener('install', (e) => {
       return caches.match(e.request)
     })
   );
+}); */
+
+/* self.addEventListener('fetch', (e) => {
+  e.respondWith(
+    fetch(e.request)
+    .then(
+      (response) => {
+        caches.open("pwa-assets").then(
+          cache => { 
+            cache.put(e.request, response.clone())
+          }
+        )
+      },
+      () => {
+        return caches.match(e.request)
+      }
+    )
+  );
+}); */
+
+self.addEventListener('fetch', function (event) {
+  event.respondWith(
+    caches.open('mysite-dynamic').then(function (cache) {
+      return fetch(event.request).then(function (response) {
+        cache.put(event.request, response.clone());
+        return response;
+      });
+    }),
+  );
 });
- */
+
+
 
 /* self.addEventListener("fetch", event => {
   event.respondWith(
@@ -52,6 +82,8 @@ self.addEventListener('install', (e) => {
   );
 }); */
 
+
+
 /* self.addEventListener('fetch', e => {
   e.respondWith(
     caches.match(e.request).then(
@@ -72,20 +104,3 @@ self.addEventListener('fetch', e => {
       })
   )
 }) */
-
-
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-        const networkFetch = fetch(event.request).then(response => {
-          // update the cache with a clone of the network response
-          caches.open("pwa-assets").then(cache => {
-              cache.put(event.request, response.clone());
-          });
-        });
-        // prioritize cached response over network
-        return cachedResponse || networkFetch;
-    }
-  )
- )
-});
