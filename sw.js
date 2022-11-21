@@ -17,11 +17,14 @@ self.addEventListener('fetch', e => {
       return response || fetch(e.request);
     })
   );
-  e.waitUntil(
-    caches.match(e.request).then(() => {
-      caches.open('pwa-assets').then((cache) => cache.add(e.request));
-    })
-  )
+  
+  if (window.location.hostname === e.request.hostname) {
+    e.waitUntil(
+        caches.match(e.request).then(() => {
+          caches.open('pwa-assets').then((cache) => cache.add(e.request));
+        })
+    )
+  }
 });
 
 
