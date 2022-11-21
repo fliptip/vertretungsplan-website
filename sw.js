@@ -17,7 +17,13 @@ self.addEventListener('fetch', e => {
       return response || fetch(e.request);
     })
   );
+  e.waitUntil(
+    caches.match(e.request).then(() => {
+      caches.open('pwa-assets').then((cache) => cache.add(e.url));
+    })
+  )
 });
+
 
 /* self.addEventListener('fetch', function (event) {
   event.respondWith(
