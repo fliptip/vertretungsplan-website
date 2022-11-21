@@ -19,7 +19,7 @@ self.addEventListener('fetch', e => {
   );
   e.waitUntil(
     caches.match(e.request).then(() => {
-      caches.open('pwa-assets').then((cache) => cache.add(e.url));
+      caches.open('pwa-assets').then((cache) => cache.add(e.request.url));
     })
   )
 });
