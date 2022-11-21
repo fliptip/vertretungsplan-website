@@ -4,7 +4,6 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open('pwa-assets').then((cache) => cache.addAll([
       '/',
-      '/index.html',
       '/styles.css',
       '/index.js',
       '/src/app.js',
@@ -16,8 +15,8 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('fetch', function (event) {
   event.respondWith(
-    caches.match(event.request).then(function (response) {
-      return response || fetch(event.request);
+    fetch(event.request).catch(function () {
+      return caches.match(event.request);
     }),
   );
 });
