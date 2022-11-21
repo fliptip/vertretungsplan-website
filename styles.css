@@ -30,6 +30,12 @@ body {
   position: relative;
 }
 
+@media (height: 100dvh) {
+  #app {
+    min-height: 100dvh;
+  }
+}
+
 #content > div { /* all in app */
   padding-block: var(--borderradius);
   border-radius: var(--borderradius);
