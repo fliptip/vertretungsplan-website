@@ -10,28 +10,23 @@ self.addEventListener('install', (e) => {
     ])),
   );
 });
-  
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
-    })
-  );
 
-  if (self.location.hostname === e.request.hostname) {
-    e.waitUntil(
-        caches.match(e.request).then(() => {
-          caches.open('pwa-assets').then((cache) => cache.add(e.request));
-        })
-    )
+self.addEventListener("fetch", event => {
+  if (event.request.destination === "image") {
+    event.respondWith(caches.open('pwa-assets').then(cache => {
+      return cache.match(event.request).then(cachedResponse => {
+        const fetchedResponse = fetch(event.request).then(networkResponse => {
+
+          if (self.location.hostname === e.request.hostname) {
+            cache.put(event.request, networkResponse.clone());
+          }
+          return networkResponse;
+        });
+
+        return cachedResponse || fetchedResponse;
+      });
+    }));
+  } else {
+    return;
   }
 });
-
-
-/* self.addEventListener('fetch', function (event) {
-  event.respondWith(
-    fetch(event.request).catch(function () {
-      return caches.match(event.request);
-    }),
-  );
-}); */
