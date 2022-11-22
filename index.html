@@ -48,18 +48,23 @@
       </div>
     </div>
     <div id="content">
-      <div id="table">
-        <table class="plan" id="plan0">
-          <tr>
-            <th>Klasse</th>
-            <th>Stunde</th>
-            <th>Fach</th>
-            <th>Raum</th>
-            <th>Lehrer</th>
-            <th id="infotext">Text</th>
-          </tr>
-        </table>
-        <span id="lastUpdate">Vertretungsplan nicht geladen</span>
+      <div>
+        <div id="table">
+          <table class="plan" id="plan0">
+            <tr>
+              <th>Klasse</th>
+              <th>Stunde</th>
+              <th>Fach</th>
+              <th>Raum</th>
+              <th>Lehrer</th>
+              <th id="infotext">Text</th>
+            </tr>
+          </table>
+        </div>
+        <div id="undertable">
+          <span id="lastUpdate">Vertretungsplan nicht geladen</span>
+          <button id="refreshData">neu laden</button>
+        </div>
       </div>
     </div>
     <script
@@ -76,7 +81,7 @@
           <div id="wcb" class="carbonbadge"></div>
         </a>
       </div>
-      <hr style="color: white;">
+      <hr>
       <div id="footercontent">
         <details>
           <summary>Zugangscode</summary>

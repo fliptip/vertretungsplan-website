@@ -71,7 +71,7 @@ function getSubstination(date) {
         var json = JSON.parse(xhr.responseText);
         //document.getElementById("app").innerHTML = xhr.response;
         console.log(json);
-        document.getElementById('lastUpdate').innerHTML = ` Stand: ${json['payload']['lastUpdate']}`
+        document.getElementById('lastUpdate').innerHTML = `Stand: ${json['payload']['lastUpdate']}`
         var rows = json['payload']['rows'];
         for (let x in rows) {
             var c = rows[x]['group'];

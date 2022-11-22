@@ -4,16 +4,20 @@
   --tablecolor: #04aa6d;
   --bw: black;
   --borderradius: 12px;
+  --bordercolor: #aaaaa9
 }
 
 p, h1 {
   margin: 0;
 }
 
+
+
 body {
 
   --appborder: 0.5rem;
   --footerheight: 5em;
+  --border: 1px;
 
   font-family: sans-serif;
   background-color: var(--color);
@@ -22,7 +26,7 @@ body {
 }
 
 #app {
-  width: min(100vw - 2* var(--appborder) - env(safe-area-inset-right) - env(safe-area-inset-left), 60rem);
+  width: min(100vw - 2* var(--appborder) - env(safe-area-inset-right) - env(safe-area-inset-left), 60rem + 2* var(--border));
   margin-inline: auto;
   position: relative;
   color: var(--bw);
@@ -30,21 +34,46 @@ body {
   position: relative;
 }
 
-@media (height: 100dvh) {
+hr {
+  /* --bordercolor: #fff; */
+
+  height: 0.1em;
+  color: var(--bordercolor);
+  background-color: var(--bordercolor);
+  border: 0;
+}
+
+@media (width: 100dvw) {
   #app {
     min-height: 100dvh;
   }
 }
 
+
+footer,
 #content > div { /* all in app */
-  padding-block: var(--borderradius);
+  border: var(--border) solid var(--bordercolor);
+}
+
+footer,
+#content > div { /* all in app */
   border-radius: var(--borderradius);
   background-color: var(--elementcolor);
+}
+
+#content > div {
+  padding-block: var(--borderradius);
   margin-block: var(--appborder);
 }
 
-#lastUpdate {
-  color: #fff;
+#undertable {
+  justify-content: space-between;
+  display: flex;
+  margin-top: var(--appborder);
+}
+
+#undertable > * {
+  margin-inline: var(--appborder);
 }
 
 
@@ -69,7 +98,6 @@ input {
 
 
 footer {
-  background-color: var(--elementcolor);
   border-radius: var(--borderradius) var(--borderradius) 0 0;
   min-height: var(--footerheight);
   padding-top: .6em;
@@ -77,9 +105,13 @@ footer {
   top: 100vh;
   animation: y-slide .7s cubic-bezier(.38,.49,0,.82);
   color: #fff;
-  padding-bottom: clamp(.6em, env(safe-area-inset-bottom), 1em);
-  
+  padding-bottom: clamp(.6em, env(safe-area-inset-bottom), 1em);  
+  border-bottom: 0;
 }
+/* #footercontent {
+  display: flex;
+  justify-content: space-evenly;
+} */
 
 #footercontent > * {
   padding-inline: var(--appborder);
@@ -111,15 +143,11 @@ details[open] summary ~ * {
 #table {
   --tableinfowidth: min(calc(100vmax - 100vmin), 22ch);
   overflow-x: scroll;
-  padding-top: 3px;
-  margin-top: 0;
-  z-index: 1;
   position: relative;
-  padding-top: 3px;
 }
 
 #lastUpdate {
-  margin: var(--appborder);
+  color:#fff;
 }
 
 .options > button {
@@ -140,14 +168,18 @@ details[open] summary ~ * {
 
 #infotext {
   width: calc(
-    var(--tableinfowidth) - 4px - 6 * 1px
-  ); /* --tableinfowidth padding-inline, 6 Spalten mit border-right 1px */
+    var(--tableinfowidth) - 0.5ch - 5 * 1px
+  ); /* --tableinfowidth padding-inline, (6 Spalten mit border-right 1px) - kein anfang/ende */
 }
+
+/* #teachertext {
+  width: var(--teacherinfowidt);
+} */
 
 .plan {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: clamp(100%, 100vmin - 2 * var(--appborder) + var(--tableinfowidth), 60rem);
+  width: clamp(100%, 100vmin - 2 * var(--appborder) - 2* var(--border) + var(--tableinfowidth) /* + var(--teacherinfowidth) */, 60rem);
   text-align: left;
 }
 
@@ -161,10 +193,23 @@ details[open] summary ~ * {
 
 .plan td,
 .plan th {
-  padding-inline: 4px;
-  border-bottom: 1px solid var(--bw);
+  padding-inline: 0.5ch;
+  border-bottom: var(--border) solid var(--bordercolor);
   padding-block: 2px;
-  border-right: 1px solid var(--bw);
+}
+
+.plan td {
+  border-inline: var(--border) solid var(--bordercolor); 
+}
+
+.plan th:last-child,
+.plan td:last-child {
+  border-right: 0;
+}
+
+.plan th:first-child,
+.plan td:first-child {
+  border-left: 0;
 }
 
 .plan tr {
@@ -198,10 +243,12 @@ details[open] summary ~ * {
 
   .plan tr {
     background-color: #2b3440;
+    /* background-color: #2c2c2c; */
   }
 
   .plan tr:nth-child(2n) {
     background-color: #262626;
+    /* background-color: #242424; */
   }
 
   .plan tr.entfall {

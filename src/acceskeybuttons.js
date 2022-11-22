@@ -1,22 +1,29 @@
 function deleteAccessKey() {
-    getSubstinationURL()
-    localStorage.removeItem('userkey')
-    alert(`Dein persönlichen Zugangscode wurder von diesem Gerät gelöscht.`)
-    subst.key = null
-    localStorage.setItem('userkey', null);
-  }
-  
-  function changeAccessKey() {
-    var inputuserkey = prompt('Persönlichen Zugangscode eingeben!');
-    inputuserkey.replace(' ', '');
-    subst.key = inputuserkey
-    localStorage.setItem('userkey', inputuserkey);
-    getSubstinationURL()
-  }
-  
-  const deleteAccessKeyButton = document.getElementById("deleteAccessKey")
-  deleteAccessKeyButton.addEventListener("click", deleteAccessKey);
-  
-  const changeAccessKeyButton = document.getElementById("changeAccessKey")
-  changeAccessKeyButton.addEventListener("click", changeAccessKey);
-   
+  getSubstinationURL()
+  localStorage.removeItem('userkey')
+  alert(`Dein persönlichen Zugangscode wurder von diesem Gerät gelöscht.`)
+  subst.key = null
+  localStorage.setItem('userkey', null);
+  document.getElementById('lastUpdate').innerHTML = ` persönlichen Zugangscode fehlt`
+}
+
+function changeAccessKey() {
+  var inputuserkey = prompt('Persönlichen Zugangscode eingeben!');
+  inputuserkey.replace(' ', '');
+  subst.key = inputuserkey
+  localStorage.setItem('userkey', inputuserkey);
+  getSubstinationURL()
+}
+
+const deleteAccessKeyButton = document.getElementById("deleteAccessKey")
+deleteAccessKeyButton.addEventListener("click", deleteAccessKey);
+
+const changeAccessKeyButton = document.getElementById("changeAccessKey")
+changeAccessKeyButton.addEventListener("click", changeAccessKey);
+
+function refreshData() {
+  triggerSubstitution()
+}
+
+const refreshDataButton = document.getElementById("refreshData")
+refreshDataButton.addEventListener("click", refreshData);
