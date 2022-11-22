@@ -12,6 +12,7 @@ self.addEventListener('install', (e) => {
 });
   
 self.addEventListener('fetch', e => {
+  console.log(e.request)
   e.respondWith(
     caches.match(e.request).then(response => {
       return response || fetch(e.request);
@@ -19,6 +20,7 @@ self.addEventListener('fetch', e => {
   );
 
   if (self.location.hostname === e.request.hostname) {
+    console.log('Update: ' + e.request)
     e.waitUntil(
         caches.match(e.request).then(() => {
           caches.open('pwa-assets').then((cache) => cache.add(e.request));
