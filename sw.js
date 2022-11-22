@@ -5,35 +5,23 @@ self.addEventListener('install', (e) => {
       '/styles.css',
       '/index.js',
       '/src/app.js',
-      '/sw.js',
       '/src/acceskeybuttons.js',
     ])),
   );
 });
-  
-self.addEventListener('fetch', e => {
-  console.log(e.request)
-  e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
-    })
-  );
 
-  if (self.location.hostname === e.request.hostname) {
-    console.log('Update: ' + e.request)
-    e.waitUntil(
-        caches.match(e.request).then(() => {
-          caches.open('pwa-assets').then((cache) => cache.add(e.request));
-        })
-    )
-  }
+self.addEventListener("fetch", event => {
+  //console.log(`${ event.request.url.includes(self.location.hostname) } ${ event.request.url }`);
+  event.respondWith(caches.open('pwa-assets').then(cache => {
+    return cache.match(event.request).then(cachedResponse => {
+      const fetchedResponse = fetch(event.request).then(networkResponse => {
+        if (event.request.url.includes(self.location.hostname)) {
+          cache.put(event.request, networkResponse.clone());
+        }
+        return networkResponse;
+      });
+
+      return cachedResponse || fetchedResponse;
+    });
+  }));
 });
-
-
-/* self.addEventListener('fetch', function (event) {
-  event.respondWith(
-    fetch(event.request).catch(function () {
-      return caches.match(event.request);
-    }),
-  );
-}); */
