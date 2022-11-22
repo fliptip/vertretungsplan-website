@@ -167,7 +167,7 @@ details[open] summary ~ * {
 }
 
 #infotext {
-  width: calc(
+  min-width: calc(
     var(--tableinfowidth) - 0.5ch - 5 * 1px
   ); /* --tableinfowidth padding-inline, (6 Spalten mit border-right 1px) - kein anfang/ende */
 }
