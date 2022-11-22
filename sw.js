@@ -12,14 +12,11 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener("fetch", event => {
-  if (event.request.destination === "image") {
+  if (self.location.hostname === event.request.hostname) {
     event.respondWith(caches.open('pwa-assets').then(cache => {
       return cache.match(event.request).then(cachedResponse => {
         const fetchedResponse = fetch(event.request).then(networkResponse => {
-
-          if (self.location.hostname === e.request.hostname) {
-            cache.put(event.request, networkResponse.clone());
-          }
+          cache.put(event.request, networkResponse.clone());
           return networkResponse;
         });
 
