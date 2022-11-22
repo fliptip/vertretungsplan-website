@@ -12,7 +12,8 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener("fetch", event => {
-  if (self.location.hostname === event.request.hostname) {
+  //console.log(event.request.url.includes(self.location.hostname) + " " + event.request.url);
+  if (event.request.url.includes(self.location.hostname)) {
     event.respondWith(caches.open('pwa-assets').then(cache => {
       return cache.match(event.request).then(cachedResponse => {
         const fetchedResponse = fetch(event.request).then(networkResponse => {
