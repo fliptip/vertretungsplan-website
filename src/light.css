@@ -1,0 +1,34 @@
+:root {
+    --color: orange;
+    --elementcolor: #c17d00;
+    --tablecolor: #04aa6d;
+    --poscolor: #000; /* positiv */
+    --negcolor: #fff; /* negativ */
+    --bordercolor: #aaaaa9
+}
+
+
+footer,
+#content > div { /* all in app */
+  --poscolor: #fff;
+}
+
+#content #table {
+    --poscolor: #000;
+}
+
+.plan th {
+    --poscolor: #fff;
+}
+
+.plan tr {
+    background-color: #fff;
+}
+
+.plan tr:nth-child(2n) {
+    background-color: #f2f2f2;
+}
+
+.plan tr.entfall {
+    background-color: #ffe4b5;
+}

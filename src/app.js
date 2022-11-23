@@ -71,7 +71,8 @@ function getSubstination(date) {
         var json = JSON.parse(xhr.responseText);
         //document.getElementById("app").innerHTML = xhr.response;
         console.log(json);
-        document.getElementById('lastUpdate').innerHTML = `Stand: ${json['payload']['lastUpdate']}`
+        statusText(`Stand: ${json['payload']['lastUpdate']}`);
+        substinationLoaded();
         var rows = json['payload']['rows'];
         for (let x in rows) {
             var c = rows[x]['group'];
@@ -102,7 +103,7 @@ function getSubstination(date) {
             }
         }
         }
-    }; // 7200000 milliseconds = 2 hours -> time in berlin
+    };
 
     var data = JSON.stringify({ date: date, userkey: subst.key });
 
@@ -110,15 +111,24 @@ function getSubstination(date) {
 }
 
 function triggerSubstitution() {
+  remove('.vertretung');
+  document.getElementById("refreshData").style.visibility = "visible";
   if (Date.now() < subst.expires) {
     var value = document.getElementById('datePicker').value;
     var date = new Date(value).toISOString().split('T')[0].replace(/-/g, '');
 
-    remove('.vertretung');
     getSubstination(date);
   } else {
     substURL();
   }
+}
+
+function substinationLoaded() {
+  document.getElementById("refreshData").style.visibility = "hidden";
+}
+
+function statusText(status) {
+  document.getElementById('lastUpdate').innerHTML = status
 }
 
 datePicker.onchange = function () {

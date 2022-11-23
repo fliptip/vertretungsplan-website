@@ -1,18 +1,19 @@
 function deleteAccessKey() {
-  getSubstinationURL()
-  localStorage.removeItem('userkey')
+  localStorage.removeItem('userkey');
+  subst.key = undefined
+  localStorage.setItem('userkey', undefined);
+  triggerSubstitution();
+  statusText(`persönlichen Zugangscode fehlt`);
   alert(`Dein persönlichen Zugangscode wurder von diesem Gerät gelöscht.`)
-  subst.key = null
-  localStorage.setItem('userkey', null);
-  document.getElementById('lastUpdate').innerHTML = ` persönlichen Zugangscode fehlt`
 }
 
 function changeAccessKey() {
   var inputuserkey = prompt('Persönlichen Zugangscode eingeben!');
+  statusText(`Datum oder Zugangscode falsch?`);
   inputuserkey.replace(' ', '');
   subst.key = inputuserkey
   localStorage.setItem('userkey', inputuserkey);
-  getSubstinationURL()
+  triggerSubstitution();
 }
 
 const deleteAccessKeyButton = document.getElementById("deleteAccessKey")

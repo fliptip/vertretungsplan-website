@@ -3,6 +3,8 @@ self.addEventListener('install', (e) => {
     caches.open('pwa-assets').then((cache) => cache.addAll([
       '/',
       '/styles.css',
+      '/src/light.css',
+      '/src/dark.css',
       '/index.js',
       '/src/app.js',
       '/src/acceskeybuttons.js',
