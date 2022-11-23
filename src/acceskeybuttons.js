@@ -16,15 +16,32 @@ function changeAccessKey() {
   triggerSubstitution();
 }
 
+function refreshData() {
+  triggerSubstitution()
+}
+
+function changeClass() {
+  var inputClass = prompt("Klasse eingeben");
+  subst.class = inputClass.toUpperCase()
+}
+
+function deleteClass() {
+  if (subst.class != undefined) { alert(`${subst.class} ist jetzt nicht mehr deine Klasse.`) }
+  subst.class = undefined
+}
+
+const refreshDataButton = document.getElementById("refreshData")
+refreshDataButton.addEventListener("click", refreshData);
+
+
 const deleteAccessKeyButton = document.getElementById("deleteAccessKey")
 deleteAccessKeyButton.addEventListener("click", deleteAccessKey);
 
 const changeAccessKeyButton = document.getElementById("changeAccessKey")
 changeAccessKeyButton.addEventListener("click", changeAccessKey);
 
-function refreshData() {
-  triggerSubstitution()
-}
+const deleteClassButton = document.getElementById("deleteClass")
+deleteClassButton.addEventListener("click", deleteClass);
 
-const refreshDataButton = document.getElementById("refreshData")
-refreshDataButton.addEventListener("click", refreshData);
+const changeClassButton = document.getElementById("changeClass")
+changeClassButton.addEventListener("click", changeClass);

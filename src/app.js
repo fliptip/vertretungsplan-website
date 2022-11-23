@@ -7,6 +7,7 @@ var subst = {
   url: undefined,
   expires: undefined,
   key: undefined,
+  class: undefined,
 };
 
 var userkey;
