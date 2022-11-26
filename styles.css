@@ -103,6 +103,10 @@ footer {
   padding-inline: var(--appborder);
 }
 
+details {
+  cursor: pointer;
+}
+
 details > summary {
   list-style: none;
 }
