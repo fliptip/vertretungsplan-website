@@ -8,7 +8,7 @@ datePicker.value = new Date(millisecondsdate).toISOString().slice(0, 10);
 
 // first get substination call
 function substURL() {
-  //console.log(subst.url + " " + subst.expires);
+  console.log('substURL() ' + document.readyState + ' ' + subst.url + " " + subst.expires);
   if (subst.url === undefined || Date.now() > subst.expires) {
     //console.log('undefined ' + subst.url);
     console.log(`app.js substurl get substitutionURL ${subst.url} ${subst.key}`)
@@ -76,6 +76,8 @@ function triggerSubstitution() {
     substURL();
   }
 }
+
+getSubstinationURL().then(() => {substURL()});
 
 function substinationLoaded() {
   document.getElementById("refreshData").style.visibility = "hidden";

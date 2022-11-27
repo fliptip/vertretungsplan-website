@@ -4,6 +4,9 @@ if ('serviceWorker' in navigator) {
     .then(() => { console.log('Service Worker Registered'); });
 };
 
+/* document.addEventListener("readystatechange", (event) => {
+}); */
+
 
 var subst = {
   url: undefined,
@@ -29,6 +32,7 @@ initialize();
 
 var geturl = 'https://vertretungsplan.fliptip.workers.dev/';
 async function getSubstinationURL() {
+  //console.log(subst.key);
   const response = await fetch(geturl, {
     headers: {
       userkey: subst.key,
@@ -44,4 +48,3 @@ async function getSubstinationURL() {
   }
 }
 
-getSubstinationURL().then(() => {substURL()});
