@@ -5,6 +5,7 @@ self.addEventListener('install', (e) => {
       '/styles.css',
       '/src/light.css',
       '/src/dark.css',
+      '/src/print.css',
       '/index.js',
       '/src/app.js',
       '/src/acceskeybuttons.js',
