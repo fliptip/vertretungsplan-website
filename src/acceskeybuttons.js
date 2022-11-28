@@ -1,7 +1,6 @@
 function deleteAccessKey() {
   localStorage.removeItem('userkey');
   subst.key = undefined
-  localStorage.removeItem('userkey');
   triggerSubstitution();
   statusText(`persönlichen Zugangscode fehlt`);
   alert(`Dein persönlichen Zugangscode wurder von diesem Gerät gelöscht.`)
