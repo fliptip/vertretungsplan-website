@@ -1,6 +1,6 @@
 :root {
     --color: white;
-    --elementcolor: #ffea79;
+    --elementcolor: #1674c8;
     --tablecolor: #04aa6d;
     --poscolor: #000; /* positiv */
     --negcolor: #000; /* negativ */
@@ -10,7 +10,7 @@
 
 footer,
 #content > div { /* all in app */
-  --poscolor: #000;
+  --poscolor: #fff;
 }
 
 #content #table {
@@ -18,7 +18,7 @@ footer,
 }
 
 .plan th {
-    --poscolor: #000;
+    --poscolor: #fff;
 }
 
 .plan tr {
