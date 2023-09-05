@@ -1,16 +1,16 @@
 :root {
-    --color: orange;
-    --elementcolor: #c17d00;
+    --color: white;
+    --elementcolor: #ffdd7e;
     --tablecolor: #04aa6d;
     --poscolor: #000; /* positiv */
-    --negcolor: #fff; /* negativ */
+    --negcolor: #000; /* negativ */
     --bordercolor: #aaaaa9
 }
 
 
 footer,
 #content > div { /* all in app */
-  --poscolor: #fff;
+  --poscolor: #000;
 }
 
 #content #table {
@@ -18,7 +18,7 @@ footer,
 }
 
 .plan th {
-    --poscolor: #fff;
+    --poscolor: #000;
 }
 
 .plan tr {
