@@ -97,7 +97,7 @@ function getSubstination(date) {
             var plan = document.getElementById('plan0');
             plan.appendChild(newRow);
 
-            if (rowsdata[4] == 'Entfall'  || rowsdata[4].includes('Verlegung nach')) {
+            if (rowsdata[4] == 'Entfall'  || rowsdata[4].includes('Verlegung nach')  || rowsdata[4].includes('Freie Stunde')) {
             //console.log(row.data[4]);
             newRow.setAttribute('class', 'entfall vertretung');
             }
